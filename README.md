@@ -21,8 +21,8 @@
  * ensure progressbar
  
  # Important Notes
-  Change police notif triggers. I did mark for you <3 
-  Check items at qb-core/shared.lua. If you dont have this items add.
+  * Change police notif triggers. I did mark for you <3 
+  * Check items at qb-core/shared.lua. If you dont have this items add.
    * lockpick
    * template_card
    * drill
