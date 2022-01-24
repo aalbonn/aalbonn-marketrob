@@ -33,9 +33,3 @@
 
  * <summary>Discord Invite</summary>
     <a href="https://discord.gg/M6Wd6bHhXE">Join "aalbonn Development"Discord Server</a>
-    
-    a.
-
- 
- 
- 
