@@ -9,4 +9,4 @@
 
 # Dependencies
  
- Datacrack by UTK : <a href="https://github.com/utkuali/datacrack">Go to link</a>
+ <a href="https://github.com/utkuali/datacrack">Datacrack by utkuali</a>
