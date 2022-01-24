@@ -31,8 +31,8 @@
    
 # If you still need help, visit and ask for help at the Discord Server
 
-<summary>Discord Invite</summary>
-   <a href="https://discord.gg/M6Wd6bHhXE">Join "aalbonn Development"Discord Server</a>
+ * <summary>Discord Invite</summary>
+    <a href="https://discord.gg/M6Wd6bHhXE">Join "aalbonn Development"Discord Server</a>
 
  
  
