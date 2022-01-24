@@ -9,7 +9,7 @@
 
 # Dependencies
  
- <a href="https://github.com/utkuali/datacrack">Datacrack by utkuali</a>
+ <a href="https://github.com/utkuali/datacrack">Datacrack by utkuali</a>,
  <a href="https://github.com/meta-hub/meta_libs">Meta Libs</a>
  <a href="https://github.com/aalbonn/progressbar-for-qbcore">Progressbar</a> 
  <a href="https://github.com/aalbonn/lsrp-lockpickfo">lsrp-lockpickfo</a>
