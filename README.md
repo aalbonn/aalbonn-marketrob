@@ -10,3 +10,7 @@
 # Dependencies
  
  <a href="https://github.com/utkuali/datacrack">Datacrack by utkuali</a>
+ 
+ <a href="https://github.com/meta-hub/meta_libs">Meta Libs</a>
+ 
+ 
