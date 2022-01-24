@@ -1,6 +1,9 @@
 # aalbonn-marketrob
 
  * <summary> <a href="https://www.youtube.com/watch?v=-53uNdYNbtIE">Preview</a> </summary>
+ * Log System
+ 
+  ![market-rob-logs](https://user-images.githubusercontent.com/96874392/150707463-eba947e0-3647-43c5-937e-c8124fc0474e.png)
 
 
 # Dependencies
