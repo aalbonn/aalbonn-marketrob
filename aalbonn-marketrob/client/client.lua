@@ -149,7 +149,7 @@ Citizen.CreateThread(function()
 					--police check
 					QBCore.Functions.TriggerCallback('aalbonn-base:polis-sayi', function(AktifPolis)
 						if AktifPolis >= 0 then
-							basicMarketSoy()
+							basicMarketSoy() --triggers robb
 						else
 							QBCore.Functions.Notify('Not Enough Police', 'error')
 						end
@@ -162,7 +162,7 @@ Citizen.CreateThread(function()
 				--police check
 					QBCore.Functions.TriggerCallback('aalbonn-base:polis-sayi', function(AktifPolis)
 						if AktifPolis >= 0 then
-							hardMarketSoy()
+							hardMarketSoy() --triggers robb
 						else
 							QBCore.Functions.Notify('Not Enough Police', 'error')
 						end
