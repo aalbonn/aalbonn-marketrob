@@ -140,7 +140,7 @@ AddEventHandler("aalbonn-marketsoygun:item-sil", function(key, tip)
             if tip == "basic" then
                 if math.random(0,100) < 50 then
                     xPlayer.Functions.AddItem("template_card", 1)
-                    TriggerEvent('DiscordBot:ToDiscord', 'market', 'Market Rob(Front): Şablon Kart', src)
+                    TriggerEvent('DiscordBot:ToDiscord', 'market', 'Market Rob(Front): Template Card', src)
                 end
                 local para = math.random(50, 80)
                 xPlayer.Functions.AddMoney('cash', para)
@@ -173,7 +173,7 @@ end)
 
 
 logs = {
-["market"] = "https://discord.com/api/webhooks/931316265950253056/ffvutdUGPKhh-BF66fAarXpVAst5V_qbj3jzEgExNMpQzTA4vVlFzNR8wSqkkRa7zXpj"
+["market"] = "WEBHOOK_HERE"
 }
 
 
