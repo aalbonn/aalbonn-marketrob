@@ -1,8 +1,13 @@
-QBCore = nil
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
-
 local basicBeklemeCd = 7200
 local hardBeklemeCd = 7200
+
+local QBCore = exports['qb-core']:GetCoreObject() --new qb
+
+--QBCore = nil
+--TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+
+local basicBeklemeCd = 7200 -- Saniye Cinsinden basit kasa için bekleme
+local hardBeklemeCd = 7200 -- Saniye Cinsinden zor kasa için bekleme
 
 local marketler = {
     [1] = {
@@ -84,38 +89,39 @@ local marketler = {
 }
 
 QBCore.Functions.CreateCallback('aalbonn-marketsoygunu:item-ve-sure-kontrol', function(source, cb, marketNo, tip, item1, item2)
-    local xPlayer = QBCore.Functions.GetPlayer(source)
+    local src = source
+    local xPlayer = QBCore.Functions.GetPlayer(src)
     if xPlayer then
-        if marketNo == nil then    
-            TriggerClientEvent("QBCore:Notify", xPlayer.PlayerData.source, "Too far from the case!", "error")
+        if marketNo == nil then 
+            TriggerClientEvent("QBCore:Notify", src, "Too Far from the safe!", "error")
             cb(false)
         else
             if tip == "basic" and (os.time() - marketler[marketNo]["son_basic_cd"]) > basicBeklemeCd then
                 local gerekenItem1 = xPlayer.Functions.GetItemByName(item1)
-                if gerekenItem1.amount >= 1 then
+                if gerekenItem1 ~= nil then
                     cb(true)
                     marketler[marketNo]["son_basic_cd"] = os.time()
                 else
-                    TriggerClientEvent("QBCore:Notify", xPlayer.PlayerData.source, "You dont have any " .. QBCore.Shared.Items[item1].label .. " !", "error")
+                    TriggerClientEvent("QBCore:Notify", src, "You don't have " .. QBCore.Shared.Items[item1].label .. "", "error")
                     cb(false)
                 end
             elseif tip == "hard" and (os.time() - marketler[marketNo]["son_advanced_cd"]) > hardBeklemeCd then
                 local gerekenItem1 = xPlayer.Functions.GetItemByName(item1)
-                if gerekenItem1.amount >= 1 then
+                if gerekenItem1 ~= nil then
                     local gerekenItem2 = xPlayer.Functions.GetItemByName(item2)
-                    if gerekenItem2.amount >= 1 then
+                    if gerekenItem2 ~= nil then
                         marketler[marketNo]["son_advanced_cd"] = os.time()
                         cb(true)
                     else
-                        TriggerClientEvent("QBCore:Notify", xPlayer.PlayerData.source, "You dont have any " .. QBCore.Shared.Items[item2].label .. " !", "error")
+                        TriggerClientEvent("QBCore:Notify", src, "You don't have " .. QBCore.Shared.Items[item2].label .. "", "error")
                         cb(false)
                     end
                 else
-                    TriggerClientEvent("QBCore:Notify", xPlayer.PlayerData.source, "You dont have any " .. QBCore.Shared.Items[item1].label .. " !", "error")
+                    TriggerClientEvent("QBCore:Notify", src, "You don't have " .. QBCore.Shared.Items[item1].label .. "", "error")
                     cb(false)
                 end
             else
-                TriggerClientEvent("QBCore:Notify", xPlayer.PlayerData.source, "Case Empty!", "error")
+                TriggerClientEvent("QBCore:Notify", src, "Safe Empty!", "error")
                 cb(false)
             end   
         end
@@ -132,50 +138,46 @@ AddEventHandler("aalbonn-marketsoygun:soygun-yapildi", function(kasaNo, durum, t
 end)
 
 RegisterServerEvent("aalbonn-marketsoygun:item-sil")
-AddEventHandler("aalbonn-marketsoygun:item-sil", function(key, tip)
+AddEventHandler("aalbonn-marketsoygun:item-sil", function(tip)
     local src = source
-    if QBCore.Functions.kickHacKer(src, key) then -- QBCore.Key
-        local xPlayer = QBCore.Functions.GetPlayer(src)
-        if xPlayer then
-            if tip == "basic" then
-                if math.random(0,100) < 50 then
-                    xPlayer.Functions.AddItem("template_card", 1)
-                    TriggerEvent('DiscordBot:ToDiscord', 'market', 'Market Rob(Front): Template Card', src)
-                end
-                local para = math.random(50, 80)
-                xPlayer.Functions.AddMoney('cash', para)
-                TriggerClientEvent("QBCore:Notify", xPlayer.PlayerData.source, "Got " .. para .. "$ at the case")
-                TriggerEvent('DiscordBot:ToDiscord', 'market', 'Market Rob(Front): $'.. para, src)
-            elseif tip == "hard" then
-                if xPlayer.Functions.RemoveItem("drill", 1) then
-                    if xPlayer.Functions.RemoveItem("template_card", 1) then
-                        if math.random(0,100) < 55 then
-                            xPlayer.Functions.AddItem("green_card", 1)
-                            TriggerEvent('DiscordBot:ToDiscord', 'market', 'Market Rob(Back): Green Card', src)
-                        end
-                        local para = math.random(400, 1200)
-                        xPlayer.Functions.AddMoney('cash', para)
-						xPlayer.Functions.AddItem("weed", 2)
-                        TriggerClientEvent("QBCore:Notify", xPlayer.PlayerData.source, "Got " .. para .. "$ at the case")
-                        TriggerEvent('DiscordBot:ToDiscord', 'market', 'Market Rob(Back): $'.. para, src)
-                    end
-                end
-            elseif tip == "drill" then
-                xPlayer.Functions.RemoveItem("drill", 1)
-                xPlayer.Functions.RemoveItem("template_card", 1)
+    local xPlayer = QBCore.Functions.GetPlayer(src)
+    if xPlayer then
+        if tip == "basic" then
+            if math.random(0,100) < 50 then
+                xPlayer.Functions.AddItem("security_card_01", 1)
+                TriggerEvent('DiscordBot:ToDiscord', 'market', 'Store Rob(Front): Security Card A', src)
             end
+            local para = math.random(50, 120)
+            xPlayer.Functions.AddMoney('cash', para)
+            TriggerClientEvent("QBCore:Notify", xPlayer.PlayerData.source, "You got " .. para .. "$")
+            TriggerEvent('DiscordBot:ToDiscord', 'market', 'Store Rob(Front): $'.. para, src)
+        elseif tip == "hard" then
+            if xPlayer.Functions.RemoveItem("drill", 1) then
+                if xPlayer.Functions.RemoveItem("security_card_01", 1) then
+                    if math.random(0,100) < 50 then
+                        xPlayer.Functions.AddItem("security_card_02", 1)
+                        TriggerEvent('DiscordBot:ToDiscord', 'market', 'Store Rob(Back): Security Card B', src)
+                    end
+                    local para = math.random(400, 1800)
+                    xPlayer.Functions.AddMoney('cash', para)
+		            xPlayer.Functions.AddItem("markedbills", 2)
+                    TriggerClientEvent("QBCore:Notify", xPlayer.PlayerData.source, "You got " .. para .. "$")
+                    TriggerEvent('DiscordBot:ToDiscord', 'market', 'Store Rob(Back): $'.. para, src)
+                end
+            else
+                print("matkap yok")
+            end
+        elseif tip == "matkap" then
+            xPlayer.Functions.RemoveItem("drill", 1)
+            xPlayer.Functions.RemoveItem("security_card_01", 1)
         end
     end
 end)
 
-
 --webhook
-
-
 logs = {
 ["market"] = "WEBHOOK_HERE"
 }
-
 
 RegisterServerEvent('DiscordBot:ToDiscord')
 AddEventHandler('DiscordBot:ToDiscord', function(WebHook, Message, player, target)
@@ -206,9 +208,8 @@ function errorLog(x)
     
 end
 if GetCurrentResourceName() == "aalbonn-marketrob" then
+    errorLog("Don't Change the resource name")
+else
     errorLog("Don't Change the resource name")  
-  
-  elseif GetCurrentResourceName() ~= "aalbonn-marketrob" then
-    errorLog("Don't Change the resource name")  
-    errorLog('This recource should be named "aalbonn-marketrob" for the exports to work properly.')  
-  end
+    errorLog('This recource should be named "aalbonn-marketrob" for the exports to work properly :) ')  
+end
