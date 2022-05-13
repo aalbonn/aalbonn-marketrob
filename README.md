@@ -8,11 +8,11 @@
 
 # Dependencies
  
- * <a href="https://github.com/utkuali/datacrack">Datacrack by utkuali</a>
+ * <a href="https://github.com/utkuali/datacrack">Datacrack</a>
  
  * <a href="https://github.com/meta-hub/meta_libs">Meta Libs</a>
  
- * <a href="https://github.com/aalbonn/progressbar-for-qbcore">Progressbar</a> Maybe you could use your own progressbar.
+ * <a href="https://github.com/aalbonn/progressbar-for-qbcore">Progressbar</a> You could use your own progressbar.
  
  * <a href="https://github.com/aalbonn/lsrp-lockpickfo">lsrp-lockpickfo</a>
  
@@ -24,13 +24,13 @@
  * ensure progressbar
  
  # Important Notes
-  * Change police notif triggers. I did mark for you <3 
-  * Check items at qb-core/shared.lua. If you dont have this items add.
+  * Change police notif triggers and alerts. I did mark for you <3 
+  * Check items at qb-core/shared.lua. or qb-core/shared/items.lua If you dont have this items add or change.
    * lockpick
-   * template_card
    * drill
-   * green_card
-   * weed
+   * security_card_01
+   * security_card_02
+
    
 # If you still need help, visit and ask for help at the Discord Server
 
