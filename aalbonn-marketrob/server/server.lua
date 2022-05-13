@@ -164,10 +164,8 @@ AddEventHandler("aalbonn-marketsoygun:item-sil", function(tip)
                     TriggerClientEvent("QBCore:Notify", xPlayer.PlayerData.source, "You got " .. para .. "$")
                     TriggerEvent('DiscordBot:ToDiscord', 'market', 'Store Rob(Back): $'.. para, src)
                 end
-            else
-                print("matkap yok")
             end
-        elseif tip == "matkap" then
+        elseif tip == "drill" then
             xPlayer.Functions.RemoveItem("drill", 1)
             xPlayer.Functions.RemoveItem("security_card_01", 1)
         end
