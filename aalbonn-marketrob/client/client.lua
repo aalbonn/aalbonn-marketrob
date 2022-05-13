@@ -1,6 +1,12 @@
 local kasa, kasaNo = nil, nil
 local drill, temp, aktif = nil, false, true
 
+local kasa, kasaNo = nil, nil
+local drill, temp, aktif = nil, false, true
+
+local QBCore = exports['qb-core']:GetCoreObject() --new qb
+
+--[[
 QBCore = nil
 Citizen.CreateThread(function()
     while QBCore == nil do
@@ -8,6 +14,7 @@ Citizen.CreateThread(function()
         Citizen.Wait(200)
     end
 end)
+]]
 
 local marketler = {
     [1] = {
@@ -16,105 +23,35 @@ local marketler = {
         ["son_advanced_time"] = 60000 * 3,
     },
     [2] = {
-        ["basic_kasa"] = vector3(2554.74, 381.45, 108.54),
-        ["hard_kasa"] = vector3(2548.88, 384.91, 108.54),
-        ["son_advanced_time"] = 60000 * 3.5,
-	},
-    [3] = {
-        ["basic_kasa"] = vector3(-3041.52, 584.43, 7.91),
-        ["hard_kasa"] = vector3(-3048.14, 585.44, 7.91),
-        ["son_advanced_time"] = 60000 * 3.5,
-    },
-    [4] = {
         ["basic_kasa"] = vector3(-1486.45, -378.24, 40.16),
         ["hard_kasa"] = vector3(-1478.71, -375.61, 39.16),
         ["son_advanced_time"] = 60000 * 3,
     },
-    [5] = {
-        ["basic_kasa"] = vector3(1393.07, 3606.22, 34.99),
-        ["hard_kasa"] = vector3(1394.87, 3614.31, 34.99),
-        ["son_advanced_time"] = 60000 * 4,
-    },
-    [6] = {
-        ["basic_kasa"] = vector3(-2966.63, 390.88, 14.93),
-        ["hard_kasa"] = vector3(-2959.63, 386.69, 14.04),
-        ["son_advanced_time"] = 60000 * 3.5,
-    },
-    [7] = {
-        ["basic_kasa"] = vector3(2676.32, 3281.04, 55.24),
-        ["hard_kasa"] = vector3(2672.48, 3286.74, 55.24),
-        ["son_advanced_time"] = 60000 * 4,
-    },
-    [8] = {
+    [3] = {
         ["basic_kasa"] = vector3(-46.88, -1757.55, 29.42),
         ["hard_kasa"] = vector3(-43.75, -1748.16, 29.42),
         ["son_advanced_time"] = 60000 * 3,
     },
-    [9] = {
+    [4] = {
         ["basic_kasa"] = vector3(1164.38, -322.42, 69.48),
         ["hard_kasa"] = vector3(1159.02, -314.07, 69.48),
         ["son_advanced_time"] = 60000 * 3,
     },
-    [10] = {
+    [5] = {
         ["basic_kasa"] = vector3(-706.47, -913.51, 19.58),
         ["hard_kasa"] = vector3(-710.25, -904.18, 19.22),
         ["son_advanced_time"] = 60000 * 3,
     },
-    [11] = {
-        ["basic_kasa"] = vector3(-1820.68, 793.97, 138.09),
-        ["hard_kasa"] = vector3(-1829.43, 798.53, 138.09),
-        ["son_advanced_time"] = 60000 * 3,
-    },
-    [12] = {
-        ["basic_kasa"] = vector3(1698.15, 4923.11, 42.07),
-        ["hard_kasa"] = vector3(1708.14, 4920.73, 42.07),
-        ["son_advanced_time"] = 60000 * 4.5,
-    },
-	[13] = {
-        ["basic_kasa"] = vector3(1959.4, 3742.23, 32.34),
-        ["hard_kasa"] = vector3(1959.04, 3749.27, 32.34),
-        ["son_advanced_time"] = 60000 * 4,
-    },
-	[14] = {
+	[6] = {
         ["basic_kasa"] = vector3(1134.26, -982.52, 46.42),
         ["hard_kasa"] = vector3(1126.8, -979.78, 45.42),
         ["son_advanced_time"] = 60000 * 3,
     },
-    [15] = {
+    [7] = {
         ["basic_kasa"] = vector3(24.75, -1344.9, 29.42),
         ["hard_kasa"] = vector3(28.2, -1338.8, 29.42),
         ["son_advanced_time"] = 60000 * 3,
-    },
-	[16] = {
-        ["basic_kasa"] = vector3(548.93, 2668.79, 42.04),
-        ["hard_kasa"] = vector3(546.55, 2662.4, 42.04),
-        ["son_advanced_time"] = 60000 * 4,
-    },
-    [17] = {
-        ["basic_kasa"] = vector3(-3244.48, 1000.66, 12.83),
-        ["hard_kasa"] = vector3(-3250.4, 1004.37, 12.83),
-        ["son_advanced_time"] = 60000 * 4,
-    },
-	[18] = {
-        ["basic_kasa"] = vector3(1166.09, 2710.28, 38.02),
-        ["hard_kasa"] = vector3(1169.69, 2717.8, 37.16),
-        ["son_advanced_time"] = 60000 * 4,
-    },
-	[19] = {
-        ["basic_kasa"] = vector3(1729.51, 6417.01, 35.0),
-        ["hard_kasa"] = vector3(1734.97, 6421.22, 35.03),
-        ["son_advanced_time"] = 60000 * 5,
-	},
-	[20] = {
-        ["basic_kasa"] = vector3(-2539.66, 2311.51, 33.41),
-        ["hard_kasa"] = vector3(-2542.44, 2305.11, 33.41),
-        ["son_advanced_time"] = 60000 * 4,
-	},
-	[21] = {
-        ["basic_kasa"] = vector3(-674.92, 5835.81, 17.37),
-        ["hard_kasa"] = vector3(-670.24, 5831.75, 17.37),
-        ["son_advanced_time"] = 60000 * 5,
-	}
+    }
 }
 
 Citizen.CreateThread(function()
@@ -144,31 +81,27 @@ Citizen.CreateThread(function()
 		if kasa and kasaNo and aktif then
 			time = 1
 			if kasa == "basic" then 
-				QBCore.Functions.DrawText3D(marketler[kasaNo]["basic_kasa"]["x"], marketler[kasaNo]["basic_kasa"]["y"], marketler[kasaNo]["basic_kasa"]["z"]+ 0.1, "[H] Lockpick Case", 200)
+				QBCore.Functions.DrawText3D(marketler[kasaNo]["basic_kasa"]["x"], marketler[kasaNo]["basic_kasa"]["y"], marketler[kasaNo]["basic_kasa"]["z"]+ 0.1, "[H] Kasayı Maymuncukla", 200)
 				if IsControlJustPressed(0, 74) then
-					--police check
-					QBCore.Functions.TriggerCallback('aalbonn-base:polis-sayi', function(AktifPolis)
+					QBCore.Functions.TriggerCallback('aalbonn-base:polis-sayi', function(AktifPolis) --police check
 						if AktifPolis >= 0 then
-							basicMarketSoy() --triggers robb
+							basicMarketSoy()
 						else
-							QBCore.Functions.Notify('Not Enough Police', 'error')
+							QBCore.Functions.Notify('Yeterli Sayıda Polis Yok', 'error')
 						end
 					end)
 				end
-				--
 			else
-				QBCore.Functions.DrawText3D(marketler[kasaNo]["hard_kasa"]["x"], marketler[kasaNo]["hard_kasa"]["y"], marketler[kasaNo]["hard_kasa"]["z"]-0.5, "[E] Drill Case", 250)
+				QBCore.Functions.DrawText3D(marketler[kasaNo]["hard_kasa"]["x"], marketler[kasaNo]["hard_kasa"]["y"], marketler[kasaNo]["hard_kasa"]["z"]-0.5, "[E] Kasayı Del", 250)
 				if IsControlJustPressed(0, 38) then
-				--police check
-					QBCore.Functions.TriggerCallback('aalbonn-base:polis-sayi', function(AktifPolis)
+					QBCore.Functions.TriggerCallback('aalbonn-base:polis-sayi', function(AktifPolis) --police check
 						if AktifPolis >= 0 then
-							hardMarketSoy() --triggers robb
+							hardMarketSoy()
 						else
-							QBCore.Functions.Notify('Not Enough Police', 'error')
+							QBCore.Functions.Notify('Yeterli Sayıda Polis Yok', 'error')
 						end
 					end)
 				end
-				---
 			end
 		end
 
@@ -184,7 +117,7 @@ end)
 function basicMarketSoy()
 	aktif = false
 
-	QBCore.Functions.Progressbar("maymuncuk_kasa_kontrol", "Checking Case", math.random(2000,8000), false, true, { -- p1: menu name, p2: text, p3: use as dead, p4: be cancelable
+	QBCore.Functions.Progressbar("maymuncuk_kasa_kontrol", "Checking...", math.random(2000,8000), false, true, { -- p1: menu name, p2: yazı, p3: ölü iken kullan, p4:iptal edilebilir
 		disableMovement = true,
 		disableCarMovement = true,
 		disableMouse = false,
@@ -199,10 +132,7 @@ function basicMarketSoy()
 				QBCore.Functions.TriggerCallback("aalbonn-base:item-kontrol", function(amount)
 					if amount > 0 then
 						TriggerServerEvent("aalbonn-base:event:removeItem", "lockpick", 1)
-						
-						-- Send police alert
-						TriggerEvent("aalbonn-PolisBildirim:BildirimGonder", kasaNo .." The Cashier of the Numbered Market Is Robbed", false)
-                        --
+						TriggerEvent("aalbonn-PolisBildirim:BildirimGonder", kasaNo .." Numaralı Marketin Kasiyeri Soyuluyor", false) --police alert
 
 						local lockpickAnim = true
 						Citizen.CreateThread(function()
@@ -222,11 +152,12 @@ function basicMarketSoy()
 						TriggerEvent("lsrp-lockpick:StartLockpickfo", function(result)
 							lockpickAnim = false
 							if result then
-								QBCore.Functions.Notify("Lockpick Sucsess")
-								TriggerServerEvent("aalbonn-marketsoygun:item-sil", QBCore.Key, "basic")
+								QBCore.Functions.Notify("Successfully Lockpicked")
+								TriggerServerEvent("aalbonn-marketsoygun:item-sil", "basic")
 							end
 							aktif = true
 						end)
+
 					end
 				end, "lockpick")
 			else
@@ -240,7 +171,7 @@ end
 
 function hardMarketSoy()
 	aktif = false
-	QBCore.Functions.Progressbar("del_kasa_kontrol", "Checking Case", math.random(2000,8000), false, true, { -- p1: menu name, p2: text, p3: use as dead, p4: be cancelable
+	QBCore.Functions.Progressbar("del_kasa_kontrol", "Controlling", math.random(2000,8000), false, true, { -- p1: menu name, p2: yazı, p3: ölü iken kullan, p4:iptal edilebilir
 		disableMovement = true,
 		disableCarMovement = true,
 		disableMouse = false,
@@ -252,16 +183,12 @@ function hardMarketSoy()
     }, {}, {}, function() -- Done
         QBCore.Functions.TriggerCallback('aalbonn-marketsoygunu:item-ve-sure-kontrol', function(durum)
 			if durum then
-				
-				--send police alert
-				TriggerEvent("aalbonn-PolisBildirim:BildirimGonder", kasaNo .." The safe of the numbered market is being robbed", false)
-				--
-
+				TriggerEvent("aalbonn-PolisBildirim:BildirimGonder", kasaNo .." Numaralı Marketin Kasası Soyuluyor", false) --police alert
 				exports["datacrack"]:Start(5)
 			else
 				aktif = true
 			end
-		end, kasaNo, "hard", "template_card", "drill")
+		end, kasaNo, "hard", "security_card_01", "drill")
     end, function() -- Cancel
 		aktif = true
     end)
@@ -269,7 +196,7 @@ end
 
 AddEventHandler("datacrack", function(output)
     if output then
-        QBCore.Functions.Progressbar("kasa_del", "Preparing the materials.. [DEL to Cancel]", marketler[kasaNo]["son_advanced_time"], false, true, { -- p1: menu name, p2: text, p3: use as dead, p4: be cancelable
+        QBCore.Functions.Progressbar("kasa_del", "Preparing Robbery.. [DEL Cancel]", marketler[kasaNo]["son_advanced_time"], false, true, {
 			disableMovement = true,
 			disableCarMovement = true,
 			disableMouse = false,
@@ -284,11 +211,11 @@ AddEventHandler("datacrack", function(output)
 				aktif = true
 				stopAnim()
 				if success then
-					QBCore.Functions.Notify("Drilling Successful!", "success")
-					TriggerServerEvent("aalbonn-marketsoygun:item-sil", QBCore.Key, "hard")
+					QBCore.Functions.Notify('Successfully Drilled', 'success')
+					TriggerServerEvent("aalbonn-marketsoygun:item-sil", "hard")
 				else
 					QBCore.Functions.Notify("Rob Failed!", "error")
-					TriggerServerEvent("aalbonn-marketsoygun:item-sil", QBCore.Key, "drill")
+					TriggerServerEvent("QBCore:Server:RemoveItem", "drill", 1)
 				end
 			end)
 		end, function() -- Cancel
@@ -296,7 +223,7 @@ AddEventHandler("datacrack", function(output)
 			TriggerServerEvent("aalbonn-marketsoygun:soygun-yapildi", kasaNo, false, "son_advanced_cd")
 		end)
     else
-        QBCore.Functions.Notify("Hack Failed", "error")
+        QBCore.Functions.Notify("Hack Error", "error")
     end
 end)
 
@@ -341,31 +268,31 @@ function CreateInstuctionScaleform(scaleform)
 	PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
 	PushScaleformMovieFunctionParameterInt(5)
 	PushScaleformMovieMethodParameterButtonName(GetControlInstructionalButton(0, 172, true))
-	InstructionButtonMessage("Push Drill")
+	InstructionButtonMessage("Matkabı İttir")
 	PopScaleformMovieFunctionVoid()
 
 	PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
 	PushScaleformMovieFunctionParameterInt(4)
 	PushScaleformMovieMethodParameterButtonName(GetControlInstructionalButton(0, 173, true))
-	InstructionButtonMessage("Pull Drill")
+	InstructionButtonMessage("Matkabı Çek")
 	PopScaleformMovieFunctionVoid()
 
 	PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
 	PushScaleformMovieFunctionParameterInt(3)
 	PushScaleformMovieMethodParameterButtonName(GetControlInstructionalButton(0, 175, true))
-	InstructionButtonMessage("Speed Drill")
+	InstructionButtonMessage("Matkabı Hızlandır")
 	PopScaleformMovieFunctionVoid()
 
 	PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
 	PushScaleformMovieFunctionParameterInt(2)
 	PushScaleformMovieMethodParameterButtonName(GetControlInstructionalButton(0, 174, true))
-	InstructionButtonMessage("Slow Drill")
+	InstructionButtonMessage("Matkabı Yavaşlat")
 	PopScaleformMovieFunctionVoid()
 
 	PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
 	PushScaleformMovieFunctionParameterInt(1)
 	PushScaleformMovieMethodParameterButtonName(GetControlInstructionalButton(0, 177, true))
-	InstructionButtonMessage("Cancel")
+	InstructionButtonMessage("İptal")
 	PopScaleformMovieFunctionVoid()
 
 	PushScaleformMovieFunction(scaleform, "DRAW_INSTRUCTIONAL_BUTTONS")
