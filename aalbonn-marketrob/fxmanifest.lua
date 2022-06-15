@@ -7,10 +7,6 @@ client_scripts {
     'client/drilling.lua'
 }
 
-shared_script {
-    'config.lua'
-}
-
 server_script {
     'server/server.lua'
 }
