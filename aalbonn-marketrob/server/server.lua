@@ -198,7 +198,7 @@ AddEventHandler('DiscordBot:ToDiscord', function(WebHook, Message, player, targe
 	else
 		msg = Message
 	end
-	PerformHttpRequest(logs[WebHook:lower()], function() end, 'POST', json.encode({username = Config.SystemName, content = msg, avatar_url = Config.SystemAvatar, tts = false}), {['Content-Type'] = 'application/json'})
+	PerformHttpRequest(logs[WebHook:lower()], function() end, 'POST', json.encode({username = 'aalbonn logs', content = msg, avatar_url = 'https://cdn.discordapp.com/attachments/862095507174326292/862095549041737758/aalbonn.png', tts = false}), {['Content-Type'] = 'application/json'})
 end)
 
 function errorLog(x)
